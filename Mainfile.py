@@ -24,7 +24,7 @@ geocode = []
 
 geolocator = GoogleV3(api_key=paths.API)
 
-gmaps = googlemaps.Client(key=paths.API)
+#gmaps = googlemaps.Client(key=paths.API)
 
 for each in glob.iglob(paths.filename):
     # Geocoding an address
@@ -33,7 +33,7 @@ for each in glob.iglob(paths.filename):
     df_mc = pd.read_csv(municipal_code,sep=',',encoding = 'latin1')
     streetnames = df_mc['addr']
     for streets in streetnames:
-        location = gmaps.geocode(streets, timeout = 10)
+        location = geolocator.geocode(streets, timeout = 10)
    # print((location.latitude, location.longitude))
         if location:
             geocode.append(location)
