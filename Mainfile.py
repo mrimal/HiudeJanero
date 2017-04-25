@@ -21,23 +21,26 @@ import pandas as pd
 from pandas import DataFrame
 
 geocode = []
-
+geocodeError = [] 
 geolocator = GoogleV3(api_key=paths.API)
 
 #gmaps = googlemaps.Client(key=paths.API)
 
-for each in glob.iglob(paths.filename):
+for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
+    print(each)
     
-    municipal_code = each
-    df_mc = pd.read_csv(municipal_code,sep=',',encoding = 'latin1')
-    streetnames = df_mc['addr']
+    df_mc = pd.read_csv(each)
+    print(df_mc)
+    streetnames = df_mc['street']
     for streets in streetnames:
         location = geolocator.geocode(streets, timeout = 10)
    # print((location.latitude, location.longitude))
         if location:
             geocode.append(location)
             print((location.latitude, location.longitude)) 
+        else:
+            geocodeError.append(streets)
      # Look up an address with reverse geocoding
     #reverse_geocode_result = gmaps.reverse_geocode((, ))
     

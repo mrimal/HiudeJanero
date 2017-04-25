@@ -15,6 +15,9 @@ $RECYCLE.BIN/
 *.msp
 paths.*
 test/
+*.xlsx
+*.xls
+
 # Windows shortcuts
 *.lnk
 
