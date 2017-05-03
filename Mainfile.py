@@ -42,7 +42,7 @@ for each in glob.iglob(paths.fileLocNew):
     streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood']
     print(streetNeigh)   
    
-    
+    '''
     for streets in streetnames:
         location = geolocator.geocode(streets, timeout = 10)
    # print((location.latitude, location.longitude))
@@ -53,17 +53,20 @@ for each in glob.iglob(paths.fileLocNew):
             geocodeError.append(streets)
      # Look up an address with reverse geocoding
     #reverse_geocode_result = gmaps.reverse_geocode((, ))
-    
+    '''
     # Request directions via public transit
     for total in streetNeigh:
         location = geolocator.geocode(total, timeout = 10)
    # print((location.latitude, location.longitude))
         if location:
             geocode1.append(location)
-            print((location.latitude, location.longitude)) 
+            geocode1.append(total)
+            #print((location.latitude, location.longitude)) 
+            print(location.address)
+            print(total)
         else:
             geocodeError1.append(total)
-            
+'''          
 final_table = pd.DataFrame(geocode, index=None)
 writer = pd.ExcelWriter('ShortOutput.xlsx')
 final_table.to_excel(writer, 'Sheet1' )
@@ -73,7 +76,7 @@ errorTable = pd.DataFrame(geocodeError, index=None)
 writerError = pd.ExcelWriter('ErrorOutput.xlsx')
 errorTable.to_excel(writerError, 'Sheet1')
 writer.save()
-
+'''
             
 final_table = pd.DataFrame(geocode1, index=None)
 writer = pd.ExcelWriter('ShortOutput1.xlsx')
