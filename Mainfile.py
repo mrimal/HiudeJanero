@@ -26,13 +26,19 @@ geocode1 = []
 geocodeError1 = []
 geolocator = GoogleV3(api_key=paths.API)
 
+def saveTabletoExcel(listName, fileName):
+    final_table = pd.DataFrame(listName, index=None)
+    x = fileName + '.xlsx'
+    writer = pd.ExcelWriter(x)
+    final_table.to_excel(writer, 'Sheet1')
+    writer.save()
 #gmaps = googlemaps.Client(key=paths.API)
 
 for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
     #print(each)
     
-    df_mc = pd.read_csv(each)[1:5]
+    df_mc = pd.read_csv(each)[1:25]
     
     #dfShortened = df_mc.ix[:,1:250]
     
@@ -65,34 +71,7 @@ for each in glob.iglob(paths.fileLocNew):
             print(total)
         else:
             geocodeError1.append(total)
-'''          
-final_table = pd.DataFrame(geocode, index=None)
-writer = pd.ExcelWriter('ShortOutput.xlsx')
-final_table.to_excel(writer, 'Sheet1' )
-writer.save()
 
-errorTable = pd.DataFrame(geocodeError, index=None)
-writerError = pd.ExcelWriter('ErrorOutput.xlsx')
-errorTable.to_excel(writerError, 'Sheet1')
-writer.save()
-'''
-            
-final_table = pd.DataFrame(geocode1, index=None)
-writer = pd.ExcelWriter('ShortOutput.xlsx')
-final_table.to_excel(writer, 'Sheet1' )
-writer.save()
-
-errorTable = pd.DataFrame(geocodeError1, index=None)
-writerError = pd.ExcelWriter('ErrorOutput.xlsx')
-errorTable.to_excel(writerError, 'Sheet1')
-writer.save()
-
-'''
-def saveTabletoExcel(listName, fileName):
-    final_table = pd.DataFrame(listName, index=None)
-    writer = pd.ExcelWriter(filename)
-    final_table.to_excel(writer, 'Sheet1')
-    writer.save()
-
-saveTabletoExcel(streetnames, street)
-'''
+#Saving the files to excel 
+saveTabletoExcel(geocode1, 'OutputFile')
+saveTabletoExcel(geocodeError1, 'ErrorFile')
