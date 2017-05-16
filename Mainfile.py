@@ -20,9 +20,6 @@ import glob
 import pandas as pd
 from pandas import DataFrame
 
-geocode1 = []
-geocodeError1 = []
-geocodeErrorCleared = []
 geolocator = GoogleV3(api_key=paths.API)
 
 def saveTabletoExcel(listName, fileName):
@@ -33,11 +30,25 @@ def saveTabletoExcel(listName, fileName):
     writer.save()
 #gmaps = googlemaps.Client(key=paths.API)
 
+#Defining Geocodes function which returns the address in coordinate format
+def findGeocodes(addressChunk, successList, failureList):
+    successList = []
+    failureList = []
+    for address in addressChunk:
+        print(address)
+        location = geolocator.geocode(address, timeout = 10)
+        if location:
+            successList.append(location)
+        else:
+            failureList.append(address)
+    
+
+
 for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
     #print(each)
     
-    df_mc = pd.read_csv(each)[500:1000]
+    df_mc = pd.read_csv(each)[1:10]
     
     #dfShortened = df_mc.ix[:,1:250]
     
@@ -46,30 +57,8 @@ for each in glob.iglob(paths.fileLocNew):
     #streetnames = df_mc['street'] 
     streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
     #print(streetNeigh)   
-   
-    '''
     
-    for streets in streetnames:
-        location = geolocator.geocode(streets, timeout = 10)
-    #print((location.latitude, location.longitude))
-        if location:
-            geocode.append(location)
-            print((location.latitude, location.longitude)) 
-        else:
-            geocodeError.append(streets)
-     # Look up an address with reverse geocoding
-    #reverse_geocode_result = gmaps.reverse_geocode((, ))
-    ''' 
-    for total in streetNeigh:
-        print(total)
-        location = geolocator.geocode(total, timeout = 10)
-        if location:
-            geocode1.append(location)
-            #print((location.latitude, location.longitude)) 
-            #print(location.address)
-            #print(total)
-        else:
-            geocodeError1.append(total)
+    findGeocodes(streetNeigh, geocode1, geocodeError1)
 
 #Saving the files to excel 
 saveTabletoExcel(geocode1, 'OutputFile')
