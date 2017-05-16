@@ -20,10 +20,9 @@ import glob
 import pandas as pd
 from pandas import DataFrame
 
-geocode = []
-geocodeError = [] 
 geocode1 = []
 geocodeError1 = []
+geocodeErrorCleared = []
 geolocator = GoogleV3(api_key=paths.API)
 
 def saveTabletoExcel(listName, fileName):
@@ -38,7 +37,7 @@ for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
     #print(each)
     
-    df_mc = pd.read_csv(each)[1:25]
+    df_mc = pd.read_csv(each)[500:1000]
     
     #dfShortened = df_mc.ix[:,1:250]
     
@@ -46,7 +45,7 @@ for each in glob.iglob(paths.fileLocNew):
     
     #streetnames = df_mc['street'] 
     streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
-    print(streetNeigh)   
+    #print(streetNeigh)   
    
     '''
     
@@ -67,8 +66,8 @@ for each in glob.iglob(paths.fileLocNew):
         if location:
             geocode1.append(location)
             #print((location.latitude, location.longitude)) 
-            print(location.address)
-            print(total)
+            #print(location.address)
+            #print(total)
         else:
             geocodeError1.append(total)
 
