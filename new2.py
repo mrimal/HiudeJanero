@@ -10,7 +10,7 @@ from pandas import DataFrame
 import shapely
 from shapely.geometry import shape,mapping, Point, Polygon, MultiPolygon
 
-polygon = shapefile.Reader('./shp/33MUE250GC_SIR.shp') 
+polygon = shapefile.Reader('test/shp/33MUE250GC_SIR.shp') 
 polygon = polygon.shapes()  
 shpfilePoints = []
 #print(polygon)

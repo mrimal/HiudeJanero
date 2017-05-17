@@ -20,6 +20,19 @@ import glob
 import pandas as pd
 from pandas import DataFrame
 
+geolocator = GoogleV3(api_key=paths.API)
+#gmaps = googlemaps.Client(key=paths.API)
+
+#defining saveTabletoExcel to create an excel file from the data extracted.
+def saveTabletoExcel(listName, fileName):
+    final_table = pd.DataFrame(listName, index=None)
+    x = fileName + '.xlsx'
+    writer = pd.ExcelWriter(x)
+    final_table.to_excel(writer, 'Sheet1')
+    writer.save()
+
+
+
 #Defining findGeocodes function which returns the address in coordinate format
 def findGeocodes(addressChunk, successList, failureList):
     successList = []
@@ -32,18 +45,7 @@ def findGeocodes(addressChunk, successList, failureList):
         else:
             failureList.append(address)
     
-#defining saveTabletoExcel to create an excel file from the data extracted.
-def saveTabletoExcel(listName, fileName):
-    final_table = pd.DataFrame(listName, index=None)
-    x = fileName + '.xlsx'
-    writer = pd.ExcelWriter(x)
-    final_table.to_excel(writer, 'Sheet1')
-    writer.save()
-    
-geolocator = GoogleV3(api_key=paths.API)
-#gmaps = googlemaps.Client(key=paths.API)
 
-    
 for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
     #print(each)
@@ -56,7 +58,6 @@ for each in glob.iglob(paths.fileLocNew):
     #streetnames = df_mc['street'] 
     streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
     #print(streetNeigh)   
-    
     findGeocodes(streetNeigh, geocode1, geocodeError1)
 
 #Saving the files to excel 

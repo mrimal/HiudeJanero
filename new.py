@@ -6,7 +6,7 @@
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
 
-polygon = shapefile.Reader('shp/33MUE250GC_SIR.shp') 
+polygon = shapefile.Reader('test/shp/33MUE250GC_SIR.shp') 
 polygon = polygon.shapes()  
 shpfilePoints = [shape.points for shape in polygon]
 
