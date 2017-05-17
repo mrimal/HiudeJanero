@@ -32,11 +32,11 @@ def saveTabletoExcel(listName, fileName):
     writer.save()
 
 
-
+successList = []
+failureList = []
 #Defining findGeocodes function which returns the address in coordinate format
-def findGeocodes(addressChunk, successList, failureList):
-    successList = []
-    failureList = []
+def findGeocodes(addressChunk):
+    
     for address in addressChunk:
         print(address)
         location = geolocator.geocode(address, timeout = 10)
@@ -58,8 +58,8 @@ for each in glob.iglob(paths.fileLocNew):
     #streetnames = df_mc['street'] 
     streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
     #print(streetNeigh)   
-    findGeocodes(streetNeigh, geocode1, geocodeError1)
+    findGeocodes(streetNeigh)
 
 #Saving the files to excel 
-saveTabletoExcel(geocode1, 'OutputFile')
-saveTabletoExcel(geocodeError1, 'ErrorFile')
+saveTabletoExcel(successList, 'OutputFile')
+saveTabletoExcel(failureList, 'ErrorFile')
