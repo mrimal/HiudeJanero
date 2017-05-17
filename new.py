@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+@author: mpr
+"""
+
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
 
