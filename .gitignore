@@ -15,6 +15,7 @@ $RECYCLE.BIN/
 *.msp
 paths.*
 test/
+shp/
 *.xlsx
 *.xls
 
