@@ -25,7 +25,7 @@ shpfilePoints = [shape.points for shape in polygon]
 
 polygons = shpfilePoints
 
-point = Point(-43.0048131, -22.8232439)        
+#point = Point(-43.0048131, -22.8232439)        
 
 def findInsideOut(point):
     for polygon in polygons:
