@@ -20,6 +20,7 @@ import glob
 import pandas as pd
 from pandas import DataFrame
 
+#Using the google maps API to define the geolocator used.
 geolocator = GoogleV3(api_key=paths.API)
 #gmaps = googlemaps.Client(key=paths.API)
 
@@ -31,12 +32,15 @@ def saveTabletoExcel(listName, fileName):
     final_table.to_excel(writer, 'Sheet1')
     writer.save()
 
-
+#Blank lists to store the data
 successList = []
 failureList = []
+
 #Defining findGeocodes function which returns the address in coordinate format
+#This takes the addresses created in "street, city, state" form in the next portion
+#of the code.
 def findGeocodes(addressChunk):
-    
+  
     for address in addressChunk:
         print(address)
         location = geolocator.geocode(address, timeout = 10)
@@ -45,12 +49,16 @@ def findGeocodes(addressChunk):
         else:
             failureList.append(address)
     
+#Reading each .txt file one by one. This txt file stores all the addresses.
+#Then running each address in each txt file through the findGeocodes function.
+#Currently only extracting 1000 addresses from each file to see if they actually 
+#work. 
 
 for each in glob.iglob(paths.fileLocNew):
     # Geocoding an address
     #print(each)
     
-    df_mc = pd.read_csv(each)[1:10]
+    df_mc = pd.read_csv(each)[1:1000]
     
     #dfShortened = df_mc.ix[:,1:250]
     
@@ -60,6 +68,7 @@ for each in glob.iglob(paths.fileLocNew):
     #print(streetNeigh)   
     findGeocodes(streetNeigh)
 
-#Saving the files to excel 
+#Saving the extracted data of whether the addresses could be found in 2 files.
+#files to excel 
 saveTabletoExcel(successList, 'OutputFile')
 saveTabletoExcel(failureList, 'ErrorFile')

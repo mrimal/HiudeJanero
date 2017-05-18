@@ -27,6 +27,8 @@ polygons = shpfilePoints
 
 #point = Point(-43.0048131, -22.8232439)        
 
+#defining the function that sees if the files are available inside the point
+# or not.
 def findInsideOut(point):
     for polygon in polygons:
         poly = Polygon(polygon)
@@ -37,6 +39,13 @@ def findInsideOut(point):
 #findInsideOut(point)
 
 #dataframe = pd.read_csv("outputfile.csv")
+#Using CSV reader to read the geocordinates from the earlier files and checking
+#to see if they fall inside or outside.
+#However, there are a few steps of automation left, mostly due to problems with 
+#installing some things on a Windows machine and some on Bash which is keeping
+#me from combining the codes. 
+
+#They can both be run seperately but we will have to wait to run them together. 
 
 with open('outputfile.csv') as csvfile:
     reader=csv.DictReader(csvfile)
