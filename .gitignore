@@ -18,6 +18,7 @@ test/
 shp/
 *.xlsx
 *.xls
+*.csv 
 
 # Windows shortcuts
 *.lnk

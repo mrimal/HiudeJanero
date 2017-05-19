@@ -47,7 +47,7 @@ def findInsideOut(point):
 
 #They can both be run seperately but we will have to wait to run them together. 
 
-with open('outputfile.csv') as csvfile:
+with open(paths.readfile) as csvfile:
     reader=csv.DictReader(csvfile)
     
     for row in reader:
