@@ -10,7 +10,6 @@ from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
 import paths
 #import pandas as pd
-#from pandas import DataFrame
 import csv 
 
 path = paths.shapefilePath
@@ -41,9 +40,6 @@ def findInsideOut(point):
 #dataframe = pd.read_csv("outputfile.csv")
 #Using CSV reader to read the geocordinates from the earlier files and checking
 #to see if they fall inside or outside.
-#However, there are a few steps of automation left, mostly due to problems with 
-#installing some things on a Windows machine and some on Bash which is keeping
-#me from combining the codes. 
 
 #They can both be run seperately but we will have to wait to run them together. 
 
