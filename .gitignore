@@ -19,6 +19,7 @@ shp/
 *.xlsx
 *.xls
 *.csv 
+.pyc
 
 # Windows shortcuts
 *.lnk
