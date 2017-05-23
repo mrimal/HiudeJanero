@@ -52,5 +52,6 @@ def csvExport():
 def main():
     readingFiles()
     csvExport()
-    
-main()
+
+if __name__ == '__main__':
+    main()
