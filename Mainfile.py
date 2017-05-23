@@ -15,6 +15,7 @@ from geopy.geocoders import GoogleV3
 import paths
 import glob
 import pandas as pd
+import multipolygon 
 
 successList = []
 failureList = []
@@ -55,3 +56,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    multipolygon.main()
