@@ -43,17 +43,21 @@ def findInsideOut(point):
 #to see if they fall inside or outside.
 
 #They can both be run seperately but we will have to wait to run them together. 
+def loopsandFind():
+    with open(paths.exportFile) as csvfile:
+        reader=csv.DictReader(csvfile)
+        
+        for row in reader:
+            x = row['1']
+            y = re.split(',', x)
+            latitude = float(y[0].strip("("))
+            longitude = float(y[1].strip(")"))
+            x = Point(longitude, latitude)
+            print(x)
+            findInsideOut(x)
 
-with open(paths.exportFile) as csvfile:
-    reader=csv.DictReader(csvfile)
+def main():
+    loopsandFind()
     
-    for row in reader:
-        x = row['1']
-        #print(x)
-        y = re.split(',', x)
-        #print(y)
-        latitude = float(y[0].strip("("))
-        longitude = float(y[1].strip(")"))
-        x = Point(longitude, latitude)
-        print(x)
-        findInsideOut(x)
+if __name__ == '__main__':
+    main()
