@@ -53,7 +53,8 @@ def csvExport():
 def main():
     readingFiles()
     csvExport()
+    multipolygon.main()
+
 
 if __name__ == '__main__':
     main()
-    multipolygon.main()
