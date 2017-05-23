@@ -11,6 +11,7 @@ import shapefile
 import paths
 #import pandas as pd
 import csv 
+import re
 
 path = paths.shapefilePath
 
@@ -43,11 +44,16 @@ def findInsideOut(point):
 
 #They can both be run seperately but we will have to wait to run them together. 
 
-with open(paths.readfile) as csvfile:
+with open(paths.exportFile) as csvfile:
     reader=csv.DictReader(csvfile)
     
     for row in reader:
-        print(row['lat '], row['long '])
-        x = Point(float(row['long ']), float(row['lat ']))
+        x = row['1']
+        #print(x)
+        y = re.split(',', x)
+        #print(y)
+        latitude = float(y[0].strip("("))
+        longitude = float(y[1].strip(")"))
+        x = Point(longitude, latitude)
         print(x)
         findInsideOut(x)
