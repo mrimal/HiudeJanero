@@ -6,12 +6,13 @@ Created on Thu May 4 15:14:18 2017
 """
 
 from shapely.geometry import Polygon, Point, MultiPolygon
-
 import shapefile
 import paths
 #import pandas as pd
 import csv 
 import re
+
+
 
 path = paths.shapefilePath
 
@@ -21,11 +22,8 @@ polygon = polygon.shapes()
 
 shpfilePoints = [shape.points for shape in polygon]
 
-#print shpfilePoints
-
 polygons = shpfilePoints
 
-#point = Point(-43.0048131, -22.8232439)        
 
 #defining the function that sees if the files are available inside the point
 # or not.

@@ -20,7 +20,7 @@ shp/
 *.xls
 *.csv 
 *.pyc
-
+.idea/
 # Windows shortcuts
 *.lnk
 
