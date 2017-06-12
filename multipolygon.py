@@ -12,8 +12,7 @@ from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
 import pandas as pd
 
-newlist = []
-
+goodlist = []
 
 path = paths.shapefilePath
 
@@ -35,8 +34,8 @@ def findInsideOut(point, address):
         if poly.contains(point):
             print('inside')
             x = [point, address, "inside"]
-            newlist.append(x)
-            
+            goodlist.append(x)
+        
                 
 #findInsideOut(point)
 
@@ -61,7 +60,7 @@ def loopsandFind():
             findInsideOut(geocod, address)
 
 def export_final():
-    final_table = pd.DataFrame(newlist, index=None)
+    final_table = pd.DataFrame(goodlist, index=None)
     final_table.to_csv('goodpoints.csv', encoding="utf-8")
     
 def main():
