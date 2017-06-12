@@ -21,6 +21,8 @@ shp/
 *.csv 
 *.pyc
 .idea/
+Readme.txt
+
 # Windows shortcuts
 *.lnk
 
