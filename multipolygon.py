@@ -10,8 +10,9 @@ import re
 import paths
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
-#import pandas as pd
+import pandas as pd
 
+newlist = []
 
 
 path = paths.shapefilePath
@@ -27,13 +28,16 @@ polygons = shpfilePoints
 
 #defining the function that sees if the files are available inside the point
 # or not.
-def findInsideOut(point):
+def findInsideOut(point, address):
     for polygon in polygons:
         poly = Polygon(polygon)
         #print poly
         if poly.contains(point):
             print('inside')
-
+            x = [point, address, "inside"]
+            newlist.append(x)
+            
+                
 #findInsideOut(point)
 
 #dataframe = pd.read_csv("outputfile.csv")
@@ -46,16 +50,25 @@ def loopsandFind():
         reader = csv.DictReader(csvfile)
 
         for row in reader:
+            address = row['0'].decode('iso-8859-1')
             rowfirst = row['1']
             firstrow = re.split(',', rowfirst)
             latitude = float(firstrow[0].strip("("))
             longitude = float(firstrow[1].strip(")"))
             geocod = Point(longitude, latitude)
             print(geocod)
-            findInsideOut(geocod)
+            print(address)
+            findInsideOut(geocod, address)
 
+def export_final():
+    final_table = pd.DataFrame(newlist, index=None)
+    final_table.to_csv('goodpoints.csv', encoding="utf-8")
+    
 def main():
     loopsandFind()
-
+    export_final()
+    
 if __name__ == '__main__':
     main()
+    
+    
