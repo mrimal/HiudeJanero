@@ -9,7 +9,7 @@ import csv
 import paths
 import multipolygon
 import pandas as pd
-from geopy.geocoders import GoogleV3, Nominatim
+from geopy.geocoders import GoogleV3
 
 #defining the two types of list and google API.
 successlist = []
@@ -29,6 +29,9 @@ class brokenAddress(object):
     that need to be done to include the addresses that are broken.
     """
     def __init__(self, street, neighbourhood, municipal, state_name, zipcode, country):
+        """
+        Defining the self part of the string
+        """
         self.street = street
         self.neighbourhood = neighbourhood
         self.municipal = municipal
@@ -38,7 +41,8 @@ class brokenAddress(object):
     #Finding address at first with the four main points
     def findAddress(self):
         """Finding address for the largest address group"""
-        address = self.street + "," + self.neighbourhood + "," + self.municipal +"," + self.state_name
+        address = self.street + "," + self.neighbourhood + "," + \
+                  self.municipal +"," + self.state_name
         print(address)
         location = geolocator.geocode(address, timeout=10)
         if location:
@@ -46,16 +50,11 @@ class brokenAddress(object):
         else:
             failurelist.append(address)
 
-    def findosmaddress(self):
-        address = self.street + "," + self.neighbourhood + "," + self.municipal +"," + self.state_name
-        print(address)
-        location1 = geoloc_osm.geocode(address)
-        if location1:
-            print(location1)
-        else:
-            print("What is going on mate")
-
 def main(filepath):
+    """
+    Reading csv files and then stripping addresses of the csv files and
+    then running the findAddress function.
+    """
     for each in glob.iglob(filepath):
         with open(each) as csvfile:
             reader = csv.DictReader(csvfile)
@@ -67,7 +66,8 @@ def main(filepath):
                 zipcode = df_mc1['zipcode']
                 country = df_mc1['country']
 
-                addressChunk = brokenAddress(street, neighbourhood, municipal, state_name, zipcode, country)
+                addressChunk = brokenAddress(street, neighbourhood, municipal,\
+                                             state_name, zipcode, country)
                 addressChunk.findAddress()
                 #print(addressChunk)
 
@@ -75,15 +75,14 @@ def main(filepath):
 def csvExport():
     """
     This gives us the lists we have created with addresses that passed and
-    failed as csvs. This can be improved by just defining csvexport(list) to give
-    us csv for any file. This would be one place where the code would change in
-    the final version.
+    failed as csvs. This can be improved by just defining csvexport(list) to 
+    give us csv for any file. This would be one place where the code would 
+    change in the final version.
     """
     final_table = pd.DataFrame(successlist, index=None)
     final_table.to_csv('good.csv', encoding='utf-8')
     final_table = pd.DataFrame(failurelist, index=None)
     final_table.to_csv('bad.csv', encoding='utf-8')
-
 
 if __name__ == '__main__':
     main(paths.testfile)

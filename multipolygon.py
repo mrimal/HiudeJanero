@@ -49,7 +49,7 @@ def loopsandFind():
         reader = csv.DictReader(csvfile)
 
         for row in reader:
-            address = row['0'].decode('iso-8859-1')
+            address = row['0'].decode('iso-8859-1').encode('utf8')
             rowfirst = row['1']
             firstrow = re.split(',', rowfirst)
             latitude = float(firstrow[0].strip("("))

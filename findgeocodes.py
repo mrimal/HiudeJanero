@@ -22,7 +22,7 @@ def goog(addressChunk):
         else:
             failureList.append(address)
     
-
+"""
 def osm(addressChunk):
     for address in addressChunk:
         print(address)
@@ -32,7 +32,7 @@ def osm(addressChunk):
             successList.append(location)
         else:
             failureList.append(address)
-"""
+
 def bing(addressChunk):
     for address in addressChunk:
         print(address)
