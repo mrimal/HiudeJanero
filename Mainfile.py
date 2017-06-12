@@ -38,12 +38,20 @@ class brokenAddress(object):
     def findAddress(self):
         """Finding address for the largest address group"""
         address = self.street + "," + self.neighbourhood + "," + self.municipal +"," + self.state_name
+        address2 = self.street + "," + self.neighbourhood + "," + self.state_name + self.zipcode
         print(address)
         location = geolocator.geocode(address, timeout=10)
         if location:
-            successlist.append(location)
+            success = [location, "First try"]
+            successlist.append(success)
         else:
             failurelist.append(address)
+            failurelocation = geolocator.geocode(address2, timeout = 10)
+            if failurelocation:
+                success2 = [failurelocation, "Second Try - without State"]
+                successlist.append(success2)
+                
+                
 
 
 def main(filepath):
@@ -79,4 +87,4 @@ def csvExport():
 if __name__ == '__main__':
     main(paths.testfile)
     csvExport()
-    multipolygon.main()
+    #multipolygon.main()

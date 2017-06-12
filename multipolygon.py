@@ -49,8 +49,8 @@ def loopsandFind():
         reader = csv.DictReader(csvfile)
 
         for row in reader:
-            address = row['0'].decode('iso-8859-1').encode('utf8')
-            rowfirst = row['1']
+            address = row['1'].decode('iso-8859-1').encode('utf8')
+            rowfirst = row['0']
             firstrow = re.split(',', rowfirst)
             latitude = float(firstrow[0].strip("("))
             longitude = float(firstrow[1].strip(")"))
@@ -58,7 +58,7 @@ def loopsandFind():
             print(geocod)
             print(address)
             findInsideOut(geocod, address)
-
+            '''
 def export_final():
     final_table = pd.DataFrame(goodlist, index=None)
     final_table.to_csv('goodpoints.csv', encoding="utf-8")
