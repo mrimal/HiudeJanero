@@ -87,4 +87,4 @@ def csvExport():
 if __name__ == '__main__':
     main(paths.testfile)
     csvExport()
-    #multipolygon.main()
+    multipolygon.main()

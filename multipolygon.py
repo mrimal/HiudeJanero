@@ -24,7 +24,7 @@ shpfilePoints = [shape.points for shape in polygon]
 
 polygons = shpfilePoints
 
-
+my_list = []
 #defining the function that sees if the files are available inside the point
 # or not.
 def findInsideOut(point, address):
@@ -40,18 +40,26 @@ def findInsideOut(point, address):
 #findInsideOut(point)
 
 #dataframe = pd.read_csv("outputfile.csv")
-#Using CSV reader to read the geocordinates from the earlier files and checking
-#to see if they fall inside or outside.
 
-#They can both be run seperately but we will have to wait to run them together.
+
 def loopsandFind():
+    """
+    Using CSV reader to read the geocordinates from the earlier files and checking
+    to see if they fall inside or outside.
+    """
     with open(paths.exportFile) as csvfile:
-        reader = csv.DictReader(csvfile)
-
-        for row in reader:
-            address = row['1'].decode('iso-8859-1').encode('utf8')
-            rowfirst = row['0']
-            firstrow = re.split(',', rowfirst)
+        reader = csv.reader(csvfile)
+        my_list = list(reader)
+        for row in my_list:
+            #address = row['1'].decode('iso-8859-1').encode('utf8')
+            rowfirst = row[1]
+            print(rowfirst[0])
+            #print(rowfirst[1])
+            #print(x)
+            '''
+            firstrow = re.split(", (", rowfirst)
+            print(firstrow[1])
+            
             latitude = float(firstrow[0].strip("("))
             longitude = float(firstrow[1].strip(")"))
             geocod = Point(longitude, latitude)
