@@ -51,7 +51,7 @@ def loopsandFind():
     
 def main():
     loopsandFind()
-    fileexport.csv_export(goodlist, "foundaddy")
+    fileexport.csv_export(goodlist, "found_address")
     
 if __name__ == '__main__':
     main()
