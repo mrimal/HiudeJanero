@@ -25,7 +25,8 @@ def goog(addresschunk):
         print(address)
         location = GEOLOC.geocode(address, timeout=10)
         if location:
-            success_list.append(location)
+            slist = [location.longitude, location.latitude, location.address, "First try"]
+            success_list.append(slist)
         else:
             failure_list.append(address)
-            
+
