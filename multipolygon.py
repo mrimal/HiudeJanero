@@ -8,11 +8,10 @@ from __future__ import print_function
 import csv
 import re
 import paths
+import fileexport
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
 import pandas as pd
-
-goodlist = []
 
 path = paths.shapefilePath
 
@@ -24,7 +23,7 @@ shpfilePoints = [shape.points for shape in polygon]
 
 polygons = shpfilePoints
 
-my_list = []
+goodlist = []
 #defining the function that sees if the files are available inside the point
 # or not.
 def findInsideOut(point, address):
@@ -36,44 +35,23 @@ def findInsideOut(point, address):
             x = [point, address, "inside"]
             goodlist.append(x)
         
-                
-#findInsideOut(point)
-
-#dataframe = pd.read_csv("outputfile.csv")
-
-
 def loopsandFind():
     """
     Using CSV reader to read the geocordinates from the earlier files and checking
     to see if they fall inside or outside.
     """
     with open(paths.exportFile) as csvfile:
-        reader = csv.reader(csvfile)
-        my_list = list(reader)
-        for row in my_list:
-            #address = row['1'].decode('iso-8859-1').encode('utf8')
-            rowfirst = row[1]
-            print(rowfirst[0])
-            #print(rowfirst[1])
-            #print(x)
-            '''
-            firstrow = re.split(", (", rowfirst)
-            print(firstrow[1])
-            
-            latitude = float(firstrow[0].strip("("))
-            longitude = float(firstrow[1].strip(")"))
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            latitude = float(row['0'])
+            longitude = float(row['1'])
+            address = row['2']
             geocod = Point(longitude, latitude)
-            print(geocod)
-            print(address)
             findInsideOut(geocod, address)
-            '''
-def export_final():
-    final_table = pd.DataFrame(goodlist, index=None)
-    final_table.to_csv('goodpoints.csv', encoding="utf-8")
     
 def main():
     loopsandFind()
-    export_final()
+    fileexport.csv_export(goodlist, "foundaddy")
     
 if __name__ == '__main__':
     main()
