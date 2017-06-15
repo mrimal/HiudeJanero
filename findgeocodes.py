@@ -3,42 +3,29 @@
 Created on Tue Apr 25 10:46:08 2017
 @author: mpr
 """
-
+from __future__ import print_function
 import paths
-from geopy.geocoders import GoogleV3, Nominatim, Bing
+from geopy.geocoders import GoogleV3
 
-successList = []
-failureList = []
-geoloc_goog = GoogleV3(api_key=paths.API)
-geoloc_osm = Nominatim()
-#geoloc_bing = Bing()
+success_list = []
+failure_list = []
+GEOLOC = GoogleV3(api_key=paths.API)
 
-def goog(addressChunk):
-    for address in addressChunk:
-        print(address)
-        location = geoloc_goog.geocode(address, timeout = 10)
-        if location:
-            successList.append(location)
-        else:
-            failureList.append(address)
-    
-"""
-def osm(addressChunk):
-    for address in addressChunk:
-        print(address)
-        location = geoloc_osm.geocode(address)
-        if location:
-            print(location)
-            successList.append(location)
-        else:
-            failureList.append(address)
 
-def bing(addressChunk):
-    for address in addressChunk:
+def goog(addresschunk):
+    """
+    This will check to see if an address
+    can be returned by google maps API
+    or not. This will return the good address
+    in a list called success_list and addresses
+    which cannot be found in another list
+    failure_list.
+    """
+    for address in addresschunk:
         print(address)
-        location = geoloc_bing.geocode(address)
+        location = GEOLOC.geocode(address, timeout=10)
         if location:
-            successList.append(location)
+            success_list.append(location)
         else:
-            failureList.append(address)
-"""
+            failure_list.append(address)
+            

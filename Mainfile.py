@@ -7,7 +7,8 @@ from __future__ import print_function
 import glob
 import csv
 import paths
-import multipolygon
+#import multipolygon
+import fileexport
 import pandas as pd
 from geopy.geocoders import GoogleV3
 
@@ -70,21 +71,9 @@ def main(filepath):
                 addressChunk.findAddress()
                 #print(addressChunk)
 
-#Saving the files to excel
-def csvExport():
-    """
-    This gives us the lists we have created with addresses that passed and
-    failed as csvs. This can be improved by just defining csvexport(list) to give
-    us csv for any file. This would be one place where the code would change in
-    the final version.
-    """
-    final_table = pd.DataFrame(listname, index=None)
-    file = filename + '.csv' 
-    final_table.to_csv(file, encoding='utf-8')
-
 
 if __name__ == '__main__':
     main(paths.testfile)
-    csvExport(successlist, 'good')
-    csvExport(failurelist, 'bad')
-    multipolygon.main()
+    fileexport.csvExport(successlist, 'good')
+    fileexport.csv_export(failurelist, 'bad')
+    #multipolygon.main()
