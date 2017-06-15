@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
 Created on Tue Apr 25 10:46:08 2017
 @author: mpr
@@ -78,13 +78,13 @@ def csvExport():
     us csv for any file. This would be one place where the code would change in
     the final version.
     """
-    final_table = pd.DataFrame(successlist, index=None)
-    final_table.to_csv('good.csv', encoding='utf-8')
-    final_table = pd.DataFrame(failurelist, index=None)
-    final_table.to_csv('bad.csv', encoding='utf-8')
+    final_table = pd.DataFrame(listname, index=None)
+    file = filename + '.csv' 
+    final_table.to_csv(file, encoding='utf-8')
 
 
 if __name__ == '__main__':
     main(paths.testfile)
-    csvExport()
+    csvExport(successlist, 'good')
+    csvExport(failurelist, 'bad')
     multipolygon.main()
