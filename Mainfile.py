@@ -18,7 +18,11 @@ import pandas as pd
 import multipolygon 
 
 
-def readingFiles():   
+def readingFiles():
+    """
+    This reades the files from all the 
+    directories in the path.
+    """"   
     for each in glob.iglob(paths.fileLocNew):
         # Geocoding an address
         df_mc = pd.read_csv(each)[1:12]    
