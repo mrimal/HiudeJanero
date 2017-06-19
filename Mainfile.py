@@ -22,6 +22,7 @@ def readingFiles():
     """
     This reades the files from all the 
     directories in the path.
+    This is a test line added. 
     """"   
     for each in glob.iglob(paths.fileLocNew):
         # Geocoding an address
