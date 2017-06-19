@@ -6,12 +6,11 @@ Created on Thu May 4 15:14:18 2017
 """
 from __future__ import print_function
 import csv
-import re
 import paths
 import fileexport
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
-import pandas as pd
+
 
 path = paths.shapefilePath
 

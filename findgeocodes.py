@@ -4,15 +4,11 @@ Created on Tue Apr 25 10:46:08 2017
 @author: mpr
 """
 from __future__ import print_function
-import paths
 import glob
 import csv
+import paths
 import fileexport
 import multipolygon
-
-import pandas as pd
-from pandas import DataFrame
-
 from geopy.geocoders import GoogleV3
 
 success_list = []
@@ -40,7 +36,7 @@ def findcodes(filepath):
                 municipal = df_mc1['municipal'].decode('iso-8859-1').encode('utf8')
                 state_name = df_mc1['state_name']
                 zipcode = df_mc1['zipcode']
-                country = df_mc1['country']
+                #country = df_mc1['country']
 
                 address = street + "," + neighbourhood + "," + municipal + "," \
                             + state_name
@@ -58,11 +54,17 @@ def findcodes(filepath):
                         slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
                         success_list.append(slist)
 def main():
+    """
+    Run all the functions created in the
+    file. These include finding the geocodes,
+    exporting them to files, and then finding
+    whether or not they fall within the specified
+    shapefile.
+    """
     findcodes(paths.testfile)
     fileexport.csv_export(success_list, "good")
     fileexport.csv_export(failure_list, "bad")
     multipolygon.main()
-    
 
 if __name__ == '__main__':
     main()
