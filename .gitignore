@@ -22,6 +22,7 @@ shp/
 *.pyc
 .idea/
 Readme.txt
+output/
 
 # Windows shortcuts
 *.lnk
