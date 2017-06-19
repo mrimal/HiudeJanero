@@ -1,0 +1,38 @@
+,street,neighboorhood,municipal,state_name,zipcode,country
+0,                         TRAVESSA TALITA 142,                   SAO GONCALO,São Gonçalo,Rio de Janeiro,24456320,Brazil
+1,                       ESTR DA CONCEICAO 9,                        ITAUNA,São Gonçalo,Rio de Janeiro,24461840,Brazil
+2,            RUA DOUTOR FRANCISCO PORTELA 2713,                     PATRONATO,São Gonçalo,Rio de Janeiro,24435000,Brazil
+3,              JORNALISTA ROBERTO MARINHO 221,                     COLUBANDE,São Gonçalo,Rio de Janeiro,24451010,Brazil
+4,              JORNALISTA ROBERTO MARINHO 221,                     COLUBANDE,São Gonçalo,Rio de Janeiro,24451010,Brazil
+5,                      ESTRADA DO PACHECO 20,                       PACHECO,São Gonçalo,Rio de Janeiro,24732570,Brazil
+6,                 AVENIDA FELICIANO SODRE 225,                        CENTRO,São Gonçalo,Rio de Janeiro,24030012,Brazil
+7,                    RUA DOUTOR JURUMENHA 2545,                SANTA CATARINA,São Gonçalo,Rio de Janeiro,24415395,Brazil
+8,            RUA JOSE LOURENCO DE AZEVEDO 81,                         ROCHA,São Gonçalo,Rio de Janeiro,24740081,Brazil
+9,                      AFONSO GOMES DUTRA 60,                         BOACU,São Gonçalo,Rio de Janeiro,24465240,Brazil
+10,                     RUA OTAVIO CARNEIRO 143,                        ICARAI,São Gonçalo,Rio de Janeiro,24230190,Brazil
+11,               RUA PROFESSOR RAUL PENIDO 100,                   BRASILANDIA,São Gonçalo,Rio de Janeiro,24465410,Brazil
+12,                              R DR MARCH 117,                 VENDA DA CRUZ,São Gonçalo,Rio de Janeiro,24410000,Brazil
+13,                    R DOUTOR PORCIUNCULA 445,                 VENDA DA CRUZ,São Gonçalo,Rio de Janeiro,24411005,Brazil
+14,                        RUA JOAO CAETANO 0,                     ALCANTARA,São Gonçalo,Rio de Janeiro,24710405,Brazil
+15,                    AV PRESIDENTE KENNEY 359,                   BRASILANDIA,São Gonçalo,Rio de Janeiro,24445000,Brazil
+16,           AVENIDA DOUTOR EUGENIO BORGES 387,                       TRIBOBO,São Gonçalo,Rio de Janeiro,24751000,Brazil
+17,               RUA CORONEL JOAQUIM RAMOS 7,                        GRADIM,São Gonçalo,Rio de Janeiro,24452165,Brazil
+18,                       BOQUEIRAO PEQUENO 2645,                         ROCHA,São Gonçalo,Rio de Janeiro,24421250,Brazil
+19,                 RUA PROF MARIA JOAQUINA 300,                     BOA VISTA,São Gonçalo,Rio de Janeiro,24466260,Brazil
+20,                    R NESTOR PINTO ALVES 34,                     ALCANTARA,São Gonçalo,Rio de Janeiro,24711070,Brazil
+21,                     AVENIDA PAULA LEMOS 17,                   SAO GONCALO,São Gonçalo,Rio de Janeiro,24461000,Brazil
+22,                             RUA JUNDIAI 544,                      TRINDADE,São Gonçalo,Rio de Janeiro,24456080,Brazil
+23,                  RUA DR FELICIANO SODRE 149,                        CENTRO,São Gonçalo,Rio de Janeiro,24440440,Brazil
+24,          RUA CAPITAO JUVENAL FIGUEIREDO 500,                     ALCANTARA,São Gonçalo,Rio de Janeiro,24744560,Brazil
+25,                           R FUED MOISES 161,                       TRIBOBO,São Gonçalo,Rio de Janeiro,24755030,Brazil
+26,                     ESTRADA DA TRINDADE 100,                        ITAUNA,São Gonçalo,Rio de Janeiro,24474005,Brazil
+27,                    ESTRADA DA CONCEICAO 1136,                    MUTUAGUACU,São Gonçalo,Rio de Janeiro,24461840,Brazil
+28,                              RUA RECIFE 665,                      TRINDADE,São Gonçalo,Rio de Janeiro,24457550,Brazil
+29,            ESTR DA COVANCA DA CONCEICAO 326,                     MUTUAPIRA,São Gonçalo,Rio de Janeiro,24461390,Brazil
+30,                      RUA BERNARDO FARIA 885,               JARDIM CATARINA,São Gonçalo,Rio de Janeiro,24717191,Brazil
+31,              AV JOSE MENDONCA DE CAMPOS 887,                     COLUBANDE,São Gonçalo,Rio de Janeiro,24450260,Brazil
+32,                               BOA VISTA 12,                PORTO DA PEDRA,São Gonçalo,Rio de Janeiro,24436220,Brazil
+33,                      RUA ARISTIDES LIMA 441,                      LARANJAL,São Gonçalo,Rio de Janeiro,24720130,Brazil
+34,                   ESTRADA DAS PALMEIRAS 1210,                        ITAUNA,São Gonçalo,Rio de Janeiro,24475002,Brazil
+35,              AV JOSE MENDONCA DE CAMPOS 956,                     COLUBANDE,São Gonçalo,Rio de Janeiro,24450700,Brazil
+36,              RUA CAP.JEVENAL FIGUEIREDO 207,                     ALCANTARA,São Gonçalo,Rio de Janeiro,24744560,Brazil

@@ -6,6 +6,7 @@ Created on Thu Jun 15 11:29:16 2017
 """
 
 import pandas as pd
+import os
 
 
 def csv_export(listname, filename):
@@ -17,4 +18,5 @@ def csv_export(listname, filename):
     """
     final_table = pd.DataFrame(listname, index=None)
     file = filename + '.csv'
-    final_table.to_csv(file, encoding='utf-8')
+    filepath = os.path.join("output", file)
+    final_table.to_csv(filepath, encoding='utf-8')

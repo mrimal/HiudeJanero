@@ -8,9 +8,11 @@ import paths
 import glob
 import csv
 import fileexport
+import multipolygon
 
 import pandas as pd
 from pandas import DataFrame
+
 from geopy.geocoders import GoogleV3
 
 success_list = []
@@ -59,6 +61,8 @@ def main():
     findcodes(paths.testfile)
     fileexport.csv_export(success_list, "good")
     fileexport.csv_export(failure_list, "bad")
+    multipolygon.main()
+    
 
 if __name__ == '__main__':
     main()
