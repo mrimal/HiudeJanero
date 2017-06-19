@@ -6,11 +6,10 @@ Created on Thu May 4 15:14:18 2017
 """
 from __future__ import print_function
 import csv
-import paths
-import fileexport
 from shapely.geometry import Polygon, Point, MultiPolygon
 import shapefile
-
+import paths
+import fileexport
 
 path = paths.shapefilePath
 
@@ -26,6 +25,13 @@ goodlist = []
 #defining the function that sees if the files are available inside the point
 # or not.
 def findInsideOut(point, address):
+    """
+    This function finds whether or not
+    the coordinates given are inside the
+    boundaries of the shape file
+    and then appends it to a list so that
+    it can be written to a csv file.
+    """
     for polygon in polygons:
         poly = Polygon(polygon)
         #print poly
@@ -33,7 +39,7 @@ def findInsideOut(point, address):
             print('inside')
             x = [point, address, "inside"]
             goodlist.append(x)
-        
+
 def loopsandFind():
     """
     Using CSV reader to read the geocordinates from the earlier files and checking
@@ -47,12 +53,18 @@ def loopsandFind():
             address = row['2']
             geocod = Point(longitude, latitude)
             findInsideOut(geocod, address)
-    
+
 def main():
+    """
+    runs both the looping and finding
+    function and the function to export
+    the csv from the fileexport imported
+    file
+    """
     loopsandFind()
     fileexport.csv_export(goodlist, "found_address")
-    
+
 if __name__ == '__main__':
     main()
-    
-    
+
+
