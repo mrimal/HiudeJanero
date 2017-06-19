@@ -34,15 +34,15 @@ def readingFiles():
 
 #readingFiles(paths.fileLocNew)    
 #Saving the files to excel 
-def csvExport():
-    final_table = pd.DataFrame(findgeocodes.successList, index=None)
-    final_table.to_csv('good.csv', encoding='utf-8')
-    final_table = pd.DataFrame(findgeocodes.failureList, index=None)
-    final_table.to_csv('bad.csv', encoding='utf-8')
+def csvExport(listname, filename):
+    final_table = pd.DataFrame(listname, index=None)
+    file = filename + '.csv' 
+    final_table.to_csv(file, encoding='utf-8')
     
 def main():
     readingFiles()
-    csvExport()
+    csvExport(findgeocodes.successList, 'good')
+    csvExport(findgeocodes.failureList, 'bad')
     multipolygon.main()
 
 
