@@ -23,6 +23,7 @@ shp/
 .idea/
 Readme.txt
 output/
+newmultipol.*
 
 # Windows shortcuts
 *.lnk
