@@ -24,7 +24,7 @@ shp/
 Readme.txt
 output/
 newmultipol.*
-speed*
+speed*.py
 
 # Windows shortcuts
 *.lnk
