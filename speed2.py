@@ -67,20 +67,6 @@ def findcodes(filepath):
 
                 #location = GEOLOC.geocode(address, timeout=10)
                 find_address(address)
-                if location:
-                    slist = (latitude, longitude, address, "First try")
-                    #slist = (location.latitude, location.longitude, location.address, address, "First try")
-                    success_list.append(slist)
-                    print("found")
-                else:
-                    failure_list.append(address)
-                    location2 = GMAPS.geocode(f_address)
-                    #location2 = GEOLOC.geocode(f_address, timeout=10)
-                    if location2:
-                        slist = (latitude, longitude, f_address, "Second try without key")
-                        #slist = (location, address, "First try")
-                        #slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
-                        success_list.append(slist)
 def main():
     """
     Run all the functions created in the

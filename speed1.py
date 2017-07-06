@@ -21,22 +21,6 @@ GEOLOC = GoogleV3(api_key=paths.API)
 GMAPS = googlemaps.Client(key=paths.API)
 
 
-def find_address(address):
-    """
-    This function returns the longitude and latitude
-    of the json result that the google API returns
-    so that it is easy to write to a file.
-    """
-    URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address="
-    URL = URL2 + str(address)
-    googleResponse = urllib.urlopen(URL)
-    print(googleResponse)
-    json_location = json.loads(googleResponse.read())
-    latitude = json.dumps([s['geometry']['location']['lat'] for s in json_location['results']], indent=3)
-    longitude = json.dumps([s['geometry']['location']['lng'] for s in json_location['results']], indent=3)
-    print(latitude)
-    print(longitude)
-
 def findcodes(filepath):
     """
     This finds the files from the txt file
@@ -65,22 +49,8 @@ def findcodes(filepath):
                 f_address = street + "," + neighbourhood + "," + zipcode + "," \
                             + state_name
 
-                #location = GEOLOC.geocode(address, timeout=10)
-                find_address(address)
-                if location:
-                    slist = (latitude, longitude, address, "First try")
-                    #slist = (location.latitude, location.longitude, location.address, address, "First try")
-                    success_list.append(slist)
-                    print("found")
-                else:
-                    failure_list.append(address)
-                    location2 = GMAPS.geocode(f_address)
-                    #location2 = GEOLOC.geocode(f_address, timeout=10)
-                    if location2:
-                        slist = (latitude, longitude, f_address, "Second try without key")
-                        #slist = (location, address, "First try")
-                        #slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
-                        success_list.append(slist)
+                location = GMAPS.geocode(address)
+                print(location)                
 def main():
     """
     Run all the functions created in the
