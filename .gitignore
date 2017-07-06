@@ -24,6 +24,7 @@ shp/
 Readme.txt
 output/
 newmultipol.*
+speed*
 
 # Windows shortcuts
 *.lnk
