@@ -4,6 +4,8 @@ Created on Tue Apr 25 10:46:08 2017
 @author: mpr
 """
 from __future__ import print_function
+import googlemaps
+from datetime import datetime
 import glob
 import csv
 import paths
@@ -14,6 +16,7 @@ from geopy.geocoders import GoogleV3
 success_list = []
 failure_list = []
 GEOLOC = GoogleV3(api_key=paths.API)
+GMAPS = googlemaps.Client(key=paths.API)
 
 def findcodes(filepath):
     """
@@ -43,15 +46,20 @@ def findcodes(filepath):
                 f_address = street + "," + neighbourhood + "," + zipcode + "," \
                             + state_name
 
-                location = GEOLOC.geocode(address, timeout=10)
+                #location = GEOLOC.geocode(address, timeout=10)
+                location = GMAPS.geocode(address)
                 if location:
-                    slist = (location.latitude, location.longitude, location.address, address, "First try")
+                    slist = (location, address, "First try")
+                    #slist = (location.latitude, location.longitude, location.address, address, "First try")
                     success_list.append(slist)
+                    print("found")
                 else:
                     failure_list.append(address)
-                    location2 = GEOLOC.geocode(f_address, timeout=10)
+                    location2 = GMAPS.geocode(f_address)
+                    #location2 = GEOLOC.geocode(f_address, timeout=10)
                     if location2:
-                        slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
+                        slist = (location, address, "First try")
+                        #slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
                         success_list.append(slist)
 def main():
     """
@@ -64,7 +72,7 @@ def main():
     findcodes(paths.testfile)
     fileexport.csv_export(success_list, "good")
     fileexport.csv_export(failure_list, "bad")
-    multipolygon.main()
+    #multipolygon.main()
 
 if __name__ == '__main__':
     main()
