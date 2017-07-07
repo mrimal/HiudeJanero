@@ -26,6 +26,10 @@ def find_address(address):
     This function returns the longitude and latitude
     of the json result that the google API returns
     so that it is easy to write to a file.
+    
+    A speedtest returned that this was a tad bit slower
+    than using the GEOLOC and GMAPS commands.
+    
     """
     URL2 = "http://maps.googleapis.com/maps/api/geocode/json?address="
     URL = URL2 + str(address)
