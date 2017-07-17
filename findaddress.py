@@ -22,12 +22,19 @@ def findaddress(address):
     URL = URL + "&key=" + paths.API
     print(URL)
     googleResponse = urllib.urlopen(URL)
-    print(googleResponse)
     json_location = json.loads(googleResponse.read())
-    latitude = json.dumps([s['geometry']['location']['lat'] for s in json_location['results']], indent=3)
-    latitude = float(latitude.strip("[]"))
-    longitude = json.dumps([s['geometry']['location']['lng'] for s in json_location['results']], indent=3)
-    longitude = float(longitude.strip("[]"))
-    return latitude
-    return longitude
+    results = len(json_location['results'])
+    return json_location
+    return results
     
+    """
+    if not results:
+        return None
+    else:
+        latitude = json.dumps([s['geometry']['location']['lat'] for s in json_location['results']], indent=3)
+        latitude = float(latitude.strip("[]"))
+        longitude = json.dumps([s['geometry']['location']['lng'] for s in json_location['results']], indent=3)
+        longitude = float(longitude.strip("[]"))
+        print(latitude)
+        print(longitude)
+    """
