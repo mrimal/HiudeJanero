@@ -5,12 +5,13 @@ Created on Tue Apr 25 10:46:08 2017
 """
 from __future__ import print_function
 import googlemaps
-from datetime import datetime
+#from datetime import datetime
 import glob
 import csv
 import paths
 import fileexport
-import findgeocodes
+#import findgeocodes
+from geopy.geocoders import GoogleV3
 #import multipolygon
 
 success_list = []
