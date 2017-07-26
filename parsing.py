@@ -8,5 +8,3 @@ Created on Wed Jul 26 10:16:42 2017
 import findaddress
 
 address = findaddress.findaddress("3203 SE Woodstock Blvd., Portland, OR 97202")
-
-add2 = findaddress.findaddress("jpt address halau na ta solta")
