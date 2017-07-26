@@ -7,7 +7,6 @@ Created on Thu Jul 13 16:22:39 2017
 import urllib
 import json
 import paths
-import parsing
 
 def findaddress(address):
     """
@@ -25,9 +24,21 @@ def findaddress(address):
     googleResponse = urllib.urlopen(URL)
     json_location = json.loads(googleResponse.read())
     results = len(json_location['results'])
+    print(json_location)
     if results:
-        parsing.parsejson(json_location)
-        print(parsing.parsejson)
+        """
+        This module parses the json returned by the url request
+        and then returns the longitude, latitude, and the address 
+        of the place.
+        
+        """
+        latitude = json.dumps([s['geometry']['location']['lat'] for s in json_location['results']], indent=3)
+        latitude = float(latitude.strip("[]"))
+        longitude = json.dumps([s['geometry']['location']['lng'] for s in json_location['results']], indent=3)
+        longitude = float(longitude.strip("[]"))
+        address = json.dumps([s['formatted_address'] for s in json_location['results']], indent=3)
+        address = address.strip("[]")
+        return (address, (latitude, longitude))
     else:
         return None
   
