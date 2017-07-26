@@ -39,9 +39,8 @@ def findaddress(address):
         address = json.dumps([s['formatted_address'] for s in json_location['results']], indent=3)
         address = address.strip("[]")
         Location = [address, (latitude, longitude)]
-        return address
-        return latitude
-        return longitude
+        return address, latitude, longitude
+       
         
     else:
         return None
