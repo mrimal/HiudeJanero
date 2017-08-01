@@ -26,6 +26,7 @@ output/
 newmultipol.*
 speed1.py
 speed2.py
+parsing.py
 
 # Windows shortcuts
 *.lnk
