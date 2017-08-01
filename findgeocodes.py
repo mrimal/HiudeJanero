@@ -4,20 +4,21 @@ Created on Tue Apr 25 10:46:08 2017
 @author: mpr
 """
 from __future__ import print_function
-import googlemaps
 #from datetime import datetime
 import glob
 import csv
 import paths
+#import googlemaps
 import fileexport
+import findaddress
 #import findgeocodes
-from geopy.geocoders import GoogleV3
+#from geopy.geocoders import GoogleV3
 #import multipolygon
 
 success_list = []
 failure_list = []
-GEOLOC = GoogleV3(api_key=paths.API)
-GMAPS = googlemaps.Client(key=paths.API)
+#GEOLOC = GoogleV3(api_key=paths.API)
+#GMAPS = googlemaps.Client(key=paths.API)
 
 def findcodes(filepath):
     """
@@ -43,25 +44,19 @@ def findcodes(filepath):
                 #country = df_mc1['country']
 
                 address = street + "," + neighbourhood + "," + municipal + "," \
-                            + state_name
+                            + zipcode + state_name
                 f_address = street + "," + neighbourhood + "," + zipcode + "," \
                             + state_name
-                location = GMAPS.geocode(address)                    
-                #location = GEOLOC.geocode(address, timeout=10)
-                #find_address(address)
+                location = findaddress.findaddress(address)
                 if location:
-                    #slist = (latitude, longitude, address, "First try")
-                    slist = (location.lat, location.longitude, location.address, address, "First try")
+                    slist = [location, address, "First Try"]
                     success_list.append(slist)
                     print("found")
                 else:
                     failure_list.append(address)
-                    location2 = GMAPS.geocode(f_address)
-                    #location2 = GEOLOC.geocode(f_address, timeout=10)
+                    location2 = findaddress.findaddress(f_address)
                     if location2:
-                        #slist = (latitude, longitude, f_address, "Second try without key")
-                        #slist = (location, address, "First try")
-                        slist = (location2.latitude, location2.longitude, location2.address, f_address, "Second try")
+                        slist = [location2, f_address, "Second try"]
                         success_list.append(slist)
 def main():
     """
