@@ -15,22 +15,28 @@ import paths
 import findgeocodes
 import glob
 import pandas as pd
-import multipolygon 
+#import multipolygon 
 
+newlist = []
 
 def readingFiles():
     """
     This reades the files from all the 
     directories in the path.
     This is a test line added. 
-    """"   
-    for each in glob.iglob(paths.fileLocNew):
+    """  
+    for each in glob.iglob(paths.splitfile):
         # Geocoding an address
-        df_mc = pd.read_csv(each)[1:12]    
+        df_mc = pd.read_csv(each)  
         #streetnames = df_mc['street'] 
         streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
         #print(streetNeigh)   
-        findgeocodes.findgeocodes(streetNeigh)
+        try:
+            findgeocodes.findgeocodes(streetNeigh)
+        except:
+            newlist.append(streetNeigh)
+            print("Can't find this one")
+            pass
 
 #readingFiles(paths.fileLocNew)    
 #Saving the files to excel 
@@ -43,7 +49,7 @@ def main():
     readingFiles()
     csvExport(findgeocodes.successList, 'good')
     csvExport(findgeocodes.failureList, 'bad')
-    multipolygon.main()
+    #multipolygon.main()
 
 
 if __name__ == '__main__':
