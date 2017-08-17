@@ -15,6 +15,7 @@ import paths
 import findgeocodes
 import glob
 import pandas as pd
+import fileexport
 #import multipolygon 
 
 newlist = []
@@ -27,7 +28,7 @@ def readingFiles():
     """  
     for each in glob.iglob(paths.splitfile):
         # Geocoding an address
-        df_mc = pd.read_csv(each)[:2450]  
+        df_mc = pd.read_csv(each)[2451:4900]  
         #streetnames = df_mc['street'] 
         streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
         #print(streetNeigh)   
@@ -40,18 +41,14 @@ def readingFiles():
 
 #readingFiles(paths.fileLocNew)    
 #Saving the files to excel 
-def csvExport(listname, filename):
-    final_table = pd.DataFrame(listname, index=None)
-    file = filename + '.csv' 
-    final_table.to_csv(file, encoding='utf-8')
     
 def main():
     readingFiles()
-    csvExport(findgeocodes.successList, 'good')
-    csvExport(findgeocodes.failureList, 'bad')
-    csvExport(newlist, 'messedup')    
+    fileexport.csv_export(findgeocodes.successList, 'good')
+    fileexport.csv_export(findgeocodes.failureList, 'bad')
+    fileexport.csv_export(newlist, 'messedup')    
     #multipolygon.main()
 
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+   # main()
