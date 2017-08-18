@@ -28,7 +28,7 @@ def readingFiles():
     """  
     for each in glob.iglob(paths.splitfile):
         # Geocoding an address
-        df_mc = pd.read_csv(each)[2451:4900]  
+        df_mc = pd.read_csv(each)[4900:7350]  
         #streetnames = df_mc['street'] 
         streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
         #print(streetNeigh)   
@@ -50,5 +50,5 @@ def main():
     #multipolygon.main()
 
 
-#if __name__ == '__main__':
-   # main()
+if __name__ == '__main__':
+    main()
