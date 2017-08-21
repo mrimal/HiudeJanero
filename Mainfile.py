@@ -32,13 +32,9 @@ def readingFiles():
         #streetnames = df_mc['street'] 
         streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
         #print(streetNeigh)   
-        try:
-            findgeocodes.findgeocodes(streetNeigh)
-        except:
-            newlist.append(streetNeigh)
-            print("Can't find this one")
-            pass
-
+        #try:
+        findgeocodes.findgeocodes(streetNeigh)
+        
 #readingFiles(paths.fileLocNew)    
 #Saving the files to excel 
     
