@@ -28,9 +28,11 @@ def readingFiles():
     """  
     for each in glob.iglob(paths.splitfile):
         # Geocoding an address
-        df_mc = pd.read_csv(each)[4900:7350]  
+        df_mc = pd.read_csv(each)[2800:5000]  
         #streetnames = df_mc['street'] 
         streetNeigh = df_mc['street'] + "," +  df_mc['neighboorhood'] + ",Sao Goncalo, Rio de Janeiro," 
+        streetNeigh = streetNeigh.drop_duplicates()
+        streetNeigh = streetNeigh.replace('\s+', ' ', regex=True)
         #print(streetNeigh)   
         #try:
         findgeocodes.findgeocodes(streetNeigh)
