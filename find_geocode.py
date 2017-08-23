@@ -20,21 +20,22 @@ geolocator = GoogleV3(api_key=paths.API)
 
 def locate(x):
     #print("'" + x + "'")
-    location = geolocator.geocode(x)  # Get geocode
+    #location = geolocator.geocode(x)  # Get geocode
     #print(location)
-    lat = location.latitude
-    lon = location.longitude
+    #lat = location.latitude
+    #lon = location.longitude
     try:
         #Get geocode
         location = geolocator.geocode(x, timeout=10, exactly_one=True)
         lat = location.latitude
         lon = location.longitude
+        return pd.Series([lat,  lon])
     except:
         #didn't work for some reason that I really don't care about
         lat = np.nan
         lon = np.nan
         print(lat,lon)
-    return pd.Series([lat,  lon])
+        return pd.Series([lat,  lon])
 
 def fileread(filepath):
     """
@@ -50,7 +51,8 @@ def fileread(filepath):
                                 df_addr['municipal'] + "," + df_addr['state_name']
     df_geo = df_geo['BIG_ADDR'].drop_duplicates().reset_index()
     df_geo = df_geo.replace('\s+', ' ', regex=True)
-    df_geo[['LAT','LON']] = df_geo['BIG_ADDR'].apply(locate)
+    #df_geo[['LAT','LON']] = df_geo['BIG_ADDR'].apply(locate)
+    df_geo[['LAT','LON']] = locate(df_geo['BIG_ADDR'])
     df_geo.to_csv("filepath.csv")
     return df_geo
     
