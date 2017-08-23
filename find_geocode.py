@@ -9,6 +9,7 @@ from geopy.geocoders import GoogleV3
 import pandas as pd
 from pandas import DataFrame
 import numpy as np
+import fileexport
 
 successList = []
 failureList = []
@@ -18,9 +19,9 @@ geolocator = GoogleV3(api_key=paths.API)
 
 
 def locate(x):
-    print("'" + x + "'")
+    #print("'" + x + "'")
     location = geolocator.geocode(x)  # Get geocode
-    print(location)
+    #print(location)
     lat = location.latitude
     lon = location.longitude
     try:
@@ -28,15 +29,11 @@ def locate(x):
         location = geolocator.geocode(x, timeout=10, exactly_one=True)
         lat = location.latitude
         lon = location.longitude
-    except AttributeError:
-        print("Couldn't find it")
+    except:
+        #didn't work for some reason that I really don't care about
         lat = np.nan
         lon = np.nan
-        pass
-        #didn't work for some reason that I really don't care about
-        #lat = np.nan
-        #lon = np.nan
-        #print(lat,lon)
+        print(lat,lon)
     return pd.Series([lat,  lon])
 
 def fileread(filepath):
@@ -47,10 +44,13 @@ def fileread(filepath):
     
     This should help us create one table with everything in it.
     """
-    df_addr = pd.read_csv(filepath)
+    df_addr = pd.read_csv(filepath)[1:8]
     df_geo = pd.DataFrame(columns = ['BIG_ADDR', 'LAT', 'LON'])
     df_geo['BIG_ADDR'] = df = df_addr['street'] + "," + df_addr['neighboorhood'] + "," + \
-                                df_addr['municipal'] + "," + df_addr['state_name'] + "," + \
-                                str(df_addr['zipcode'])
+                                df_addr['municipal'] + "," + df_addr['state_name']
     df_geo = df_geo['BIG_ADDR'].drop_duplicates().reset_index()
+    df_geo = df_geo.replace('\s+', ' ', regex=True)
+    df_geo[['LAT','LON']] = df_geo['BIG_ADDR'].apply(locate)
+    df_geo.to_csv("filepath.csv")
     return df_geo
+    
