@@ -7,6 +7,7 @@ Created on Mon Aug 21 16:07:00 2017
 import paths
 from geopy.geocoders import GoogleV3
 import pandas as pd
+from pandas import DataFrame
 import numpy as np
 
 successList = []
@@ -38,23 +39,9 @@ def locate(x):
         #print(lat,lon)
     return pd.Series([lat,  lon])
 
-"""
-df_geo = pd.DataFrame(columns = ['BIG_ADDR', 'LAT', 'LON'])
-df_geo['BIG_ADDR'] =  df = df_addr['street'] + ' ' +  df_addr['neighboorhood'] + ' ' + df_addr['STATE'] + ' ' +  \
-                       df_addr['ZIP_CODE'] 
-# Eliminate dups
-df_geo = df_geo['BIG_ADDR'].drop_duplicates().reset_index()
-
-# Geocode ALL THINGS in GEO frame!
-df_geo[['LAT','LON']] = df_geo['BIG_ADDR'].apply(locate)
-
-# Create the same index in the address dataframe
-df_addr['BIG_ADDR'] =  df = df_addr['CITY'] + ' ' +  df_addr['PROVINCE'] + ' ' + df_addr['STATE'] + ' ' +  \
-                       df_addr['ZIP_CODE'] + ' ' + df_addr['COUNTRY'] 
-
-# Combine the address and geo frames 
-df_addr = pd.merge(df_addr, df_geo, on=['BIG_ADDR'], how='left') 
-df_addr.rename(columns={'LAT_y': 'LAT', 'LON_y': 'LON'}, inplace=True)           #cleanup
-df_addr.rename(columns={'LAT_y': 'LAT', 'LON_y': 'LON'}, inplace=True)
-del df_geo['index']
-"""
+def fileread(filepath):
+    df_addr = pd.read_csv(filepath)
+    df_geo = pd.DataFrame(columns = ['BIG_ADDR', 'LAT', 'LON'])
+    df_geo['BIG_ADDR'] = df = df_addr['street'] + "," + df_addr['neighboorhood'] + "," + \
+                                df_addr['municipal'] + "," + df_addr['state_name']
+    return df_geo
