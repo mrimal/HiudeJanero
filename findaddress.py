@@ -23,7 +23,7 @@ def findaddress(address):
     json_location = json.loads(googleResponse.read())
     results = len(json_location['results'])
     print(json_location)
-    text_file = open("Output.txt", "a")
+    text_file = open("output/Output.txt", "a")
     text_file.write("Json: %s" % json_location)
     text_file.close()
     
@@ -40,7 +40,9 @@ def findaddress(address):
         longitude = longitude.strip("[]")
         address = json.dumps([s['formatted_address'] for s in json_location['results']], indent=3)
         address = address.strip("[]")
-        return address, longitude, latitude
+        #return address, longitude, latitude
+        return {'address':address, 'long':longitude,'lat':latitude}
+
         
     else:
         return None

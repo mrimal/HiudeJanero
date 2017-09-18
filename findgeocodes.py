@@ -42,9 +42,9 @@ def findcodes(filepath):
         """
         #with open(each) as csvfile:
             #reader = csv.DictReader(csvfile)
-        df_mc = pd.read_csv(each)[1:24]
+        df_mc = pd.read_csv(each)[1:12]
         #for df_mc1 in df_mc:
-        for row in df_mc.iterrows():
+        for index, row in df_mc.iterrows():
             street = row['street']
             neighbourhood = row['neighboorhood']
             municipal = row['municipal']
@@ -66,7 +66,7 @@ def findcodes(filepath):
             #address_df = pd.DataFrame(address, index=None)
             location = findaddress.findaddress(address)
             if location:
-                slist = location, address, "First Try"
+                slist = location['address'], location['long'], location['lat'], address, "First Try"
                 success_list.append(slist)
                 print("found")
             else:
@@ -75,7 +75,7 @@ def findcodes(filepath):
                 if location2:
                     slist = [location2, f_address, "Second try"]
                     success_list.append(slist)
-
+           
 
 def main():
     """

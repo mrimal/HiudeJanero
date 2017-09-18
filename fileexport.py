@@ -17,6 +17,7 @@ def csv_export(listname, filename):
     change in the final version.
     """
     final_table = pd.DataFrame(listname, index=None)
+    print(final_table)
     file = filename + '.csv'
     filepath = os.path.join("output", file)
     final_table.to_csv(filepath, encoding='utf-8')
