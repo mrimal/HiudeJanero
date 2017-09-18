@@ -23,6 +23,10 @@ def findaddress(address):
     json_location = json.loads(googleResponse.read())
     results = len(json_location['results'])
     print(json_location)
+    text_file = open("Output.txt", "a")
+    text_file.write("Json: %s" % json_location)
+    text_file.close()
+    
     if results:
         """
         This module parses the json returned by the url request
@@ -36,7 +40,8 @@ def findaddress(address):
         longitude = longitude.strip("[]")
         address = json.dumps([s['formatted_address'] for s in json_location['results']], indent=3)
         address = address.strip("[]")
-        return address, latitude, longitude
+        return address, longitude, latitude
+        
     else:
         return None
   
